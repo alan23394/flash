@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 16:25:45 by alan              #+#    #+#             */
-/*   Updated: 2019/04/05 16:54:57 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/06 18:31:17 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 **	Not a finished script (if [ -f file ]; then [newline]) gets prompt 4
 ** Those extra prompts/rules are not implemented yet, so for now it's just
 ** prompt 1, which happens for the start of every command.
+** They are also subject to change ofc, that's just the plan for now
 */
 
 static void	prompt_1()
