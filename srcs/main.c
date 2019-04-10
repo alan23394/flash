@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 13:46:05 by alan              #+#    #+#             */
-/*   Updated: 2019/04/07 18:11:52 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/09 02:38:12 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 #include "ft_printf.h"
 #include "get_next_line.h"
 #include "ft_darr.h"
+#include "ft_word.h"
 
-int		process_command(char *command)
+int		process_command(const char *command)
 {
 	int	builtin_nr;
 	int	ret;
@@ -30,7 +31,7 @@ int		process_command(char *command)
 		ret = run_command(command);
 	else
 	{
-		//ft_next_word
+		command = ft_wordnext(command);
 		ret = run_builtin(builtin_nr, command);
 	}
 	return (ret);
@@ -48,7 +49,8 @@ int		main()
 	int			ret;
 	extern char	**environ;
 
-	g_environ = ft_dup_darr(environ);
+	g_environ = ft_dup_darr((const char **)environ);
+	// Increase SHLVL variable
 	print_prompt(1);
 	while ((ret = get_next_line(0, &line)) != 0)
 	{
