@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   environment.h                                      :+:      :+:    :+:   */
+/*   get_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/06 21:10:35 by alan              #+#    #+#             */
-/*   Updated: 2019/04/09 02:38:47 by alan             ###   ########.fr       */
+/*   Created: 2019/04/08 23:55:17 by alan              #+#    #+#             */
+/*   Updated: 2019/04/09 02:44:07 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENVIRONMENT_H
-# define ENVIRONMENT_H
+#include "environment.h"
+#include "ft_string.h"
 
-const char	**g_environ;
+const char	*get_env(const char *env_name)
+{
+	int		i;
+	char	*var;
 
-int			add_env(const char *env);
-int			get_env_i(const char *env_name);
-const char	*get_env(const char *env_name);
-
-int			validate_env(const char *command);
-int			validate_env_name(const char *command);
-
-#endif
+	i = get_env_i(env_name);
+	if (i != -1)
+	{
+		var = ft_strchr(g_environ[i], '=');
+		if (var)
+			++var;
+		else
+			return (0);
+		return (var);
+	}
+	return (0);
+}
