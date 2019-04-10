@@ -6,13 +6,13 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 17:33:50 by alan              #+#    #+#             */
-/*   Updated: 2019/04/07 17:34:10 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/07 23:07:47 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COMMAND_H
 # define COMMAND_H
 
-void	run_command(char *command);
+int	run_command(const char *command);
 
 #endif
