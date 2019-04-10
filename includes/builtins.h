@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 22:16:10 by alan              #+#    #+#             */
-/*   Updated: 2019/04/07 22:20:20 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/08 06:02:00 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	check_builtins(const char *command);
 int	run_builtin(int index, const char *command);
 
 int	ft_setenv(const char *command);
+int	ft_unsetenv(const char *command);
 int	ft_env(const char *command);
 
 #endif
