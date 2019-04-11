@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 06:01:34 by alan              #+#    #+#             */
-/*   Updated: 2019/04/08 06:12:54 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/11 13:45:00 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_unsetenv(const char *command)
 			// If we successfully added the pointer, set words[i] to 0 so that
 			// way it doesn't get deleted
 			if (ret == -1)
-				ft_printfd(2, "error no such environ\n");
+				ft_printfd(2, "error no such environ \"%s\"\n", words[i]);
 			else
 				ft_darrrm_i(&g_environ, ret);
 		}
