@@ -6,11 +6,12 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 13:46:05 by alan              #+#    #+#             */
-/*   Updated: 2019/04/09 02:38:12 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/12 18:12:44 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "environment.h"
+#include "expansions.h"
 #include "minishell.h"
 #include "builtins.h"
 #include "command.h"
@@ -46,6 +47,7 @@ int		print_error()
 int		main()
 {
 	char		*line;
+	char		*expanded;
 	int			ret;
 	extern char	**environ;
 
@@ -58,7 +60,8 @@ int		main()
 		{
 			return (print_error());
 		}
-		process_command(line);
+		expanded = expand_command(line);
+		process_command(expanded);
 		print_prompt(1);
 	}
 	return (0);
