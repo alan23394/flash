@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_envn_i.c                                       :+:      :+:    :+:   */
+/*   get_env_i.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/09 22:31:46 by alan              #+#    #+#             */
-/*   Updated: 2019/04/09 22:32:22 by alan             ###   ########.fr       */
+/*   Created: 2019/04/08 05:47:43 by alan              #+#    #+#             */
+/*   Updated: 2019/04/13 01:32:36 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,18 @@
 #include "ft_string.h"
 
 /*
-** This function uses ft_strnequ with the env_namelen variable passed in,
-** which allows me to search with strings that aren't null terminated.
+** This function uses ft_strnequ with the length of the env_name variable,
+** which saves ft_strequ from calculating the length each time. So if env_name
+** has trailing characters, it will not find a match.
 ** It returns -1 if the variable could not be found.
 */
 
-int	get_envn_i(const char *env_name, int env_namelen)
+int	get_env_index(const char *env_name)
 {
+	int	env_namelen;
 	int	i;
 
+	env_namelen = ft_strlen(env_name);
 	i = 0;
 	while (g_environ[i])
 	{
