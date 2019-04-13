@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 23:55:17 by alan              #+#    #+#             */
-/*   Updated: 2019/04/09 02:44:07 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/12 18:21:22 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ const char	*get_env(const char *env_name)
 	int		i;
 	char	*var;
 
-	i = get_env_i(env_name);
+	i = get_env_index(env_name);
 	if (i != -1)
 	{
 		var = ft_strchr(g_environ[i], '=');

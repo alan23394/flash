@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 06:01:34 by alan              #+#    #+#             */
-/*   Updated: 2019/04/11 13:45:00 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/13 01:32:11 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_unsetenv(const char *command)
 			ft_printfd(2, "error \"%s\" bad\n", words[i]);
 		else
 		{
-			ret = get_env_i(words[i]);
+			ret = get_env_index(words[i]);
 			// If we couldn't make more memory, don't hide the pointer
 			// If we successfully added the pointer, set words[i] to 0 so that
 			// way it doesn't get deleted

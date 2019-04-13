@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 04:24:30 by alan              #+#    #+#             */
-/*   Updated: 2019/04/11 07:00:28 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/12 19:51:59 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		add_env(const char *env)
 {
 	int	i;
 
-	i = get_envn_i(env, ft_strchr(env, '=') - env);
+	i = get_envn_index(env, ft_strchr(env, '=') - env);
 	if (i != -1)
 	{
 		ft_strdel((char **)&g_environ[i]);
