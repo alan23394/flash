@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 04:24:30 by alan              #+#    #+#             */
-/*   Updated: 2019/04/12 19:51:59 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/15 00:32:28 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 /*
 ** This function uses darradd to add a string into a double array.
-** It first checks if the item is in the array with get_envn_i, which takes a
-** string and the length of the env_name (which I get with a ft_strchr, as it
+** It first checks if the item is in the array with get_envn_index, which takes
+** a string and the length of the env_name (which I get with a ft_strchr, as it
 ** is guaranteed that the string has an = in it if it's made it to here), and
 ** returns the index if it's in the environment variables, and if it isn't, it
 ** returns -1. If the item exists already, we free the old one, and set the
