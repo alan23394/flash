@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_env_i.c                                        :+:      :+:    :+:   */
+/*   get_env_index.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 05:47:43 by alan              #+#    #+#             */
-/*   Updated: 2019/04/13 01:32:36 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/17 03:37:07 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,5 @@
 
 int	get_env_index(const char *env_name)
 {
-	int	env_namelen;
-	int	i;
-
-	env_namelen = ft_strlen(env_name);
-	i = 0;
-	while (g_environ[i])
-	{
-		if (ft_strnequ(env_name, g_environ[i], env_namelen))
-			return (i);
-		++i;
-	}
-	return (-1);
+	return (get_envn_index(env_name, ft_strlen(env_name)));
 }
