@@ -6,7 +6,7 @@
 #    By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/05 13:42:22 by alan              #+#    #+#              #
-#    Updated: 2019/04/08 03:58:42 by alan             ###   ########.fr        #
+#    Updated: 2019/04/17 11:52:44 by alan             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ include config.mk
 C_SRCS :=		$(wildcard $(SRC_DIR)/*.c)
 C_SRCS +=		$(wildcard $(SRC_DIR)/builtins/*.c)
 C_SRCS +=		$(wildcard $(SRC_DIR)/environment/*.c)
+C_SRCS +=		$(wildcard $(SRC_DIR)/expansions/*.c)
 C_OBJS :=		$(patsubst %.c,%.o,$(C_SRCS))
 DEPENDS :=		$(patsubst %.c,%.d,$(C_SRCS))
 DEPFLAGS +=		-MMD -MT $@
