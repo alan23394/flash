@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 16:25:52 by alan              #+#    #+#             */
-/*   Updated: 2019/04/08 05:20:19 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/15 04:49:18 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ int	ft_setenv(const char *command)
 	i = 0;
 	while (words[i])
 	{
-		ret = validate_env(words[i]);
-		if (ret == 1)
+		if (validate_env(words[i]) == 0)
 			ft_printfd(2, "error \"%s\" bad\n", words[i]);
 		else
 		{
