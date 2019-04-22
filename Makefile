@@ -6,7 +6,7 @@
 #    By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/05 13:42:22 by alan              #+#    #+#              #
-#    Updated: 2019/04/17 11:52:44 by alan             ###   ########.fr        #
+#    Updated: 2019/04/22 06:19:31 by alan             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ DEPFLAGS +=		-MMD -MT $@
 MAKE_LIBRARY :=	make -C $(LIB_DIR) -f $(LIB_MAKEFILE) --no-print-directory
 LIB :=			$(LIB_DIR)/$(LIB_NAME)
 
-.PHONY:			all clean fclean re
+.PHONY:			all clean fclean re install
 
 all: tags $(NAME)
 
@@ -53,6 +53,9 @@ fclean: clean
 	@- $(RM) $(NAME)
 
 re: fclean all
+
+install: $(NAME)
+	ln -siv $(shell pwd)/$(NAME) ~/bin/flash
 
 libclean:
 	@- $(MAKE_LIBRARY) fclean
