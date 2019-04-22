@@ -6,46 +6,38 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 06:01:34 by alan              #+#    #+#             */
-/*   Updated: 2019/04/13 01:32:11 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/22 05:10:26 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "environment.h"
-#include "ft_word.h"
-#include "ft_darr.h"
 #include "ft_printf.h"
+#include "ft_list.h"
+#include "ft_darr.h"
 
-int	ft_unsetenv(const char *command)
+int	ft_unsetenv(t_list *args)
 {
 	int			ret;
-	char		**words;
-	int			i;
 
-	words = ft_wordsplit(command);
-	if (!words)
+	if (!args || !args->content)
 	{
 		ft_printfd(2, "needs arguments dude\n");
 		return (1);
 	}
-	i = 0;
-	while (words[i])
+	while (args->content)
 	{
-		ret = validate_env_name(words[i]);
+		ret = validate_env_name(args->content);
 		if (ret == 1)
-			ft_printfd(2, "error \"%s\" bad\n", words[i]);
+			ft_printfd(2, "error \"%s\" bad\n", args->content);
 		else
 		{
-			ret = get_env_index(words[i]);
-			// If we couldn't make more memory, don't hide the pointer
-			// If we successfully added the pointer, set words[i] to 0 so that
-			// way it doesn't get deleted
+			ret = get_env_index(args->content);
 			if (ret == -1)
-				ft_printfd(2, "error no such environ \"%s\"\n", words[i]);
+				ft_printfd(2, "error no such environ \"%s\"\n", args->content);
 			else
 				ft_darrrm_i(&g_environ, ret);
 		}
-		++i;
+		args = args->next;
 	}
-	ft_delete_darr((void **)words);
 	return (0);
 }

@@ -6,16 +6,17 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 21:04:21 by alan              #+#    #+#             */
-/*   Updated: 2019/04/07 17:52:31 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/22 05:10:45 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "environment.h"
 #include "ft_darr.h"
+#include "ft_list.h"
 
-int	ft_env(const char *command)
+int	ft_env(t_list *args)
 {
-	(void)command;
+	(void)args;
 	ft_print_darr(g_environ);
 	return (0);
 }

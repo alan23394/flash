@@ -6,45 +6,39 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 16:25:52 by alan              #+#    #+#             */
-/*   Updated: 2019/04/15 04:49:18 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/22 05:08:18 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "environment.h"
-#include "ft_word.h"
 #include "ft_printf.h"
-#include "ft_darr.h"
+#include "ft_list.h"
 
-int	ft_setenv(const char *command)
+int	ft_setenv(t_list *args)
 {
 	int			ret;
-	char		**words;
-	int			i;
 
-	words = ft_wordsplit(command);
-	if (!words)
+	if (!args || !args->content)
 	{
 		ft_printfd(2, "needs arguments dude\n");
 		return (1);
 	}
-	i = 0;
-	while (words[i])
+	while (args->content)
 	{
-		if (validate_env(words[i]) == 0)
-			ft_printfd(2, "error \"%s\" bad\n", words[i]);
+		if (validate_env(args->content) == 0)
+			ft_printfd(2, "error \"%s\" bad\n", args->content);
 		else
 		{
-			ret = add_env(words[i]);
+			ret = add_env(args->content);
 			// If we couldn't make more memory, don't hide the pointer
 			// If we successfully added the pointer, set words[i] to 0 so that
 			// way it doesn't get deleted
 			if (!ret)
 				ft_printfd(2, "error couldn't make new memory\n");
 			else
-				words[i] = 0;
+				args->content = 0;
 		}
-		++i;
+		args = args->next;
 	}
-	ft_delete_darr((void **)words);
 	return (0);
 }
