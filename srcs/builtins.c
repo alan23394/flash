@@ -6,12 +6,13 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 17:23:13 by alan              #+#    #+#             */
-/*   Updated: 2019/04/08 06:11:55 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/22 05:02:24 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 #include "ft_word.h"
+#include "ft_list.h"
 
 /*
 ** This file is the controller for the builtins
@@ -29,7 +30,7 @@ static char	*g_builtins[] = {
 ** check_builtins! This function assumes you've done that already.
 */
 
-int		run_builtin(int index, const char *command)
+int		run_builtin(int index, t_list *args)
 {
 	static int	(*builtins[])() = {
 		[0] = ft_setenv,
@@ -37,7 +38,7 @@ int		run_builtin(int index, const char *command)
 		[2] = ft_env,
 	};
 
-	return (builtins[index](command));
+	return (builtins[index](args));
 }
 
 /*
