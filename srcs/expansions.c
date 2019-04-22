@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 08:02:16 by alan              #+#    #+#             */
-/*   Updated: 2019/04/17 11:45:12 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/17 18:09:38 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,11 @@ static char	*expand_arg(char **command)
 	if (chunk_start != *command)
 		arg_len += get_chunk(&arg_list, chunk_start, *command - 1);
 	arg = ft_lstcomb_str(arg_list, arg_len);
+	ft_lstdel(&arg_list, 0);
 	return (arg);
 }
 
-char		*expand_command(char *command)
+t_list		*expand_command(char *command)
 {
 	t_list	*list;
 	char	*command_start;
@@ -53,8 +54,6 @@ char		*expand_command(char *command)
 		command = (char *)ft_skipspace(command);
 		ft_lstadd_tail(&list, ft_lstinit(expand_arg(&command), 0));
 	}
-	ft_lstiter(list, ft_lstputstr);
-	ft_printf("\n");
 	ft_strdel(&command_start);
-	return (0);
+	return (list);
 }
