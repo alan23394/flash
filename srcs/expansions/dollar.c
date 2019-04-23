@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 08:58:16 by alan              #+#    #+#             */
-/*   Updated: 2019/04/17 11:53:00 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/23 00:37:56 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ static char	*get_dollar_envname(char **dollar_index, int *len)
 	}
 	else
 	{
-		*len = 0;
-		env_name = 0;
+		env_name = (*dollar_index + 1);
+		*len = get_valid_env_len(env_name);
+		if (*len)
+			*dollar_index = (*dollar_index + 1) + *len;
 	}
 	return (env_name);
 }
