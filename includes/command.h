@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 17:33:50 by alan              #+#    #+#             */
-/*   Updated: 2019/04/22 05:01:46 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/24 00:03:32 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 typedef struct s_list	t_list;
 
-int	run_command(t_list *args);
+int		call_command(char *command, const char **args);
+char	*get_command_path(const char *command);
+int		run_command(t_list *args);
+int		process_command(t_list *args);
 
 #endif
