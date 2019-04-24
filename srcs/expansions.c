@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 08:02:16 by alan              #+#    #+#             */
-/*   Updated: 2019/04/17 18:09:38 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/24 05:50:50 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	*expand_arg(char **command)
 	arg_len = 0;
 	arg = *command;
 	chunk_start = *command;
-	while (**command && !ft_isspace(**command))
+	while (**command && **command != ';' && !ft_isspace(**command))
 	{
 		if (**command == '~')
 			arg_len += expand_tilde(&arg_list, arg, &chunk_start, *command);
@@ -42,18 +42,25 @@ static char	*expand_arg(char **command)
 	return (arg);
 }
 
-t_list		*expand_command(char *command)
+t_list		*expand_command(char **command)
 {
 	t_list	*list;
-	char	*command_start;
+	char	*new_command;
 
 	list = 0;
-	command_start = command;
-	while (*command)
+	if (!*command)
+		return (0);
+	while (**command && **command != ';')
 	{
-		command = (char *)ft_skipspace(command);
-		ft_lstadd_tail(&list, ft_lstinit(expand_arg(&command), 0));
+		*command = (char *)ft_skipspace(*command);
+		if (**command && **command != ';')
+		{
+			new_command = expand_arg(command);
+			if (new_command)
+				ft_lstadd_tail(&list, ft_lstinit(new_command, 0));
+		}
 	}
-	ft_strdel(&command_start);
+	if (**command && **command == ';')
+		++(*command);
 	return (list);
 }

@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 13:46:05 by alan              #+#    #+#             */
-/*   Updated: 2019/04/24 00:20:34 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/24 08:08:37 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,21 @@ int		main()
 	int			ret;
 	extern char	**environ;
 
+	line = 0;
 	g_environ = ft_dup_darr((const char **)environ);
 	// Increase SHLVL variable
 	print_prompt(1);
-	while ((ret = get_next_line(0, &line)) != 0)
+	while ((line && *line) || (ret = get_next_line(0, &line)) != 0)
 	{
 		if (ret == -1)
 		{
 			return (print_error("get_next_line", "couldn't make memory"));
 		}
-		args = expand_command(line);
-		process_command(args);
-		print_prompt(1);
+		args = expand_command(&line);
+		ret = process_command(args);
+		if (*line == '\0')
+			print_prompt(1);
+		ft_lstdel(&args, ft_lstmemdel);
 	}
 	return (0);
 }
