@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 00:02:54 by alan              #+#    #+#             */
-/*   Updated: 2019/04/24 00:10:24 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/24 05:14:56 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int		process_command(t_list *args)
 	int	builtin_nr;
 	int	ret;
 
+	if (!args)
+		return (0);
 	builtin_nr = check_builtins(args->content);
 	ret = 0;
 	if (builtin_nr == -1)
