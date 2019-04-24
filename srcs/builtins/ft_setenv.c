@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 16:25:52 by alan              #+#    #+#             */
-/*   Updated: 2019/04/22 05:08:18 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/24 00:13:03 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_setenv(t_list *args)
 		ft_printfd(2, "needs arguments dude\n");
 		return (1);
 	}
-	while (args->content)
+	while (args && args->content)
 	{
 		if (validate_env(args->content) == 0)
 			ft_printfd(2, "error \"%s\" bad\n", args->content);
