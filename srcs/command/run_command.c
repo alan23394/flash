@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 17:33:00 by alan              #+#    #+#             */
-/*   Updated: 2019/04/24 00:20:03 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/24 05:57:04 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ int		run_command(t_list *args)
 		return (1);
 	}
 	ret = call_command(command_path, d_args);
-	ft_memdel((void **)d_args);
+	ft_memdel((void **)&d_args);
 	return (ret);
 }
