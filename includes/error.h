@@ -6,13 +6,13 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 05:12:09 by alan              #+#    #+#             */
-/*   Updated: 2019/04/22 05:12:32 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/24 00:19:36 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERROR_H
 # define ERROR_H
 
-int	print_error(const char *str);
+int	print_error(const char *command, const char *str);
 
 #endif

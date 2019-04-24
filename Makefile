@@ -6,7 +6,7 @@
 #    By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/05 13:42:22 by alan              #+#    #+#              #
-#    Updated: 2019/04/22 06:19:31 by alan             ###   ########.fr        #
+#    Updated: 2019/04/24 00:10:07 by alan             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ include config.mk
 
 C_SRCS :=		$(wildcard $(SRC_DIR)/*.c)
 C_SRCS +=		$(wildcard $(SRC_DIR)/builtins/*.c)
+C_SRCS +=		$(wildcard $(SRC_DIR)/command/*.c)
 C_SRCS +=		$(wildcard $(SRC_DIR)/environment/*.c)
 C_SRCS +=		$(wildcard $(SRC_DIR)/expansions/*.c)
 C_OBJS :=		$(patsubst %.c,%.o,$(C_SRCS))
