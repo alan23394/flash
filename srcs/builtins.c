@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 17:23:13 by alan              #+#    #+#             */
-/*   Updated: 2019/04/22 05:02:24 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/25 07:05:46 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 */
 
 static char	*g_builtins[] = {
+	"echo",
 	"setenv",
 	"unsetenv",
 	"env",
@@ -33,9 +34,10 @@ static char	*g_builtins[] = {
 int		run_builtin(int index, t_list *args)
 {
 	static int	(*builtins[])() = {
-		[0] = ft_setenv,
-		[1] = ft_unsetenv,
-		[2] = ft_env,
+		[0] = ft_echo,
+		[1] = ft_setenv,
+		[2] = ft_unsetenv,
+		[3] = ft_env,
 	};
 
 	return (builtins[index](args));
