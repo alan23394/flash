@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 08:02:16 by alan              #+#    #+#             */
-/*   Updated: 2019/04/24 05:50:50 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/25 07:03:10 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ t_list		*expand_command(char **command)
 		{
 			new_command = expand_arg(command);
 			if (new_command)
-				ft_lstadd_tail(&list, ft_lstinit(new_command, 0));
+				ft_lstadd_tail(&list,
+						ft_lstinit(new_command, ft_strlen(new_command)));
 		}
 	}
 	if (**command && **command == ';')
