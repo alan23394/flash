@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 22:16:10 by alan              #+#    #+#             */
-/*   Updated: 2019/04/25 07:06:29 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/25 12:35:42 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	check_builtins(const char *command);
 int	run_builtin(int index, t_list *args);
 
 int	ft_echo(t_list *args);
+int	ft_cd(t_list *args);
 int	ft_setenv(t_list *args);
 int	ft_unsetenv(t_list *args);
 int	ft_env(t_list *args);
