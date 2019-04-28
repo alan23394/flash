@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 21:10:35 by alan              #+#    #+#             */
-/*   Updated: 2019/04/17 11:49:41 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/26 17:40:13 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define ENVIRONMENT_H
 
 const char	**g_environ;
+
+const char	*make_env(const char *env_name, const char *env_value);
 
 int			add_env(const char *env);
 
