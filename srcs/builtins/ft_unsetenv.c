@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 06:01:34 by alan              #+#    #+#             */
-/*   Updated: 2019/04/24 00:27:33 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/25 22:30:35 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_unsetenv(t_list *args)
 	while (args && args->content)
 	{
 		ret = validate_env_name(args->content);
-		if (ret == 1)
+		if (ret == 0)
 			ft_printfd(2, "error \"%s\" bad\n", args->content);
 		else
 		{
