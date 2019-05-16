@@ -35,11 +35,13 @@ int			set_envi_str(int env_index, const char *env_value);
 ** Getters
 */
 
+const char	*get_env_value(const char *env_name);
+const char	*get_envn_value(const char *env_name, int env_namelen);
+const char	*get_envi_value(int env_index);
+
 int			get_env_index(const char *env_name);
 int			get_envn_index(const char *env, int env_namelen);
 
-const char	*get_env(const char *env_name);
-const char	*get_envn(const char *env_name, int env_namelen);
 
 int			get_valid_env_len(const char *env);
 int			get_valid_envn_len(const char *env, int env_len);
