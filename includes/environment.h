@@ -35,6 +35,8 @@ int			set_envi_str(int env_index, const char *env_value);
 ** Getters
 */
 
+int			get_envi_int(int env_index);
+
 const char	*get_env_value(const char *env_name);
 const char	*get_envn_value(const char *env_name, int env_namelen);
 const char	*get_envi_value(int env_index);
