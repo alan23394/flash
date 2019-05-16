@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 03:39:01 by alan              #+#    #+#             */
-/*   Updated: 2019/04/17 16:04:21 by alan             ###   ########.fr       */
+/*   Updated: 2019/05/08 17:57:06 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@
 ** the name length to validate_envn_name, which takes care of the rest.
 */
 
-int	validate_env(const char *command)
+int	validate_env(const char *env)
 {
 	char	*sign;
 
-	sign = ft_strchr(command, '=');
+	sign = ft_strchr(env, '=');
 	if (!sign)
 		return (0);
-	return (validate_envn_name(command, sign - command));
+	return (validate_envn_name(env, sign - env));
 }
