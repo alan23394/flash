@@ -20,6 +20,18 @@ const char	*make_env(const char *env_name, const char *env_value);
 int			add_env(const char *env);
 
 /*
+** Setters
+*/
+
+int			set_env_int(const char *env_name, int env_value);
+int			set_envn_int(const char *env, int env_namelen, int env_value);
+int			set_envi_int(int env_index, int env_value);
+
+int			set_env_str(const char *env_name, const char *env_value);
+int			set_envn_str(const char *env, int env_namelen, const char *env_value);
+int			set_envi_str(int env_index, const char *env_value);
+
+/*
 ** Getters
 */
 
