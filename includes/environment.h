@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 21:10:35 by alan              #+#    #+#             */
-/*   Updated: 2019/04/26 17:40:13 by alan             ###   ########.fr       */
+/*   Updated: 2019/05/15 16:33:50 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,12 @@ const char	*make_env(const char *env_name, const char *env_value);
 
 int			add_env(const char *env);
 
+/*
+** Getters
+*/
+
 int			get_env_index(const char *env_name);
-int			get_envn_index(const char *env_name, int env_namelen);
+int			get_envn_index(const char *env, int env_namelen);
 
 const char	*get_env(const char *env_name);
 const char	*get_envn(const char *env_name, int env_namelen);
