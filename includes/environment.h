@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 21:10:35 by alan              #+#    #+#             */
-/*   Updated: 2019/05/15 16:33:50 by alan             ###   ########.fr       */
+/*   Updated: 2019/05/16 15:18:19 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int			get_envn_index(const char *env, int env_namelen);
 
 int			add_env(const char *env);
 
-int			get_valid_env_len(const char *env);
-int			get_valid_envn_len(const char *env, int env_len);
+int			get_valid_env_len(const char *env_name);
+int			get_valid_envn_len(const char *env, int env_namelen);
 
 int			validate_env_name(const char *command);
 int			validate_envn_name(const char *env, int env_namelen);
