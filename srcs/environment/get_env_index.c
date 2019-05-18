@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 22:31:46 by alan              #+#    #+#             */
-/*   Updated: 2019/05/16 00:19:01 by alan             ###   ########.fr       */
+/*   Updated: 2019/05/16 16:50:04 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int			get_envn_index(const char *env, int env_namelen)
 {
 	int	i;
 
-	if (!env|| !env_namelen)
+	if (!env || !env_namelen)
 		return (-1);
 	i = 0;
 	while (g_environ[i])
