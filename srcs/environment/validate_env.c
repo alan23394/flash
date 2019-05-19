@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 03:39:01 by alan              #+#    #+#             */
-/*   Updated: 2019/05/08 17:57:06 by alan             ###   ########.fr       */
+/*   Updated: 2019/05/16 15:07:34 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	validate_env(const char *env)
 {
 	char	*sign;
 
+	if (!env)
+		return (0);
 	sign = ft_strchr(env, '=');
 	if (!sign)
 		return (0);
