@@ -15,9 +15,6 @@
 
 const char	**g_environ;
 
-const char	*make_env(const char *env_name, const char *env_value);
-
-
 /*
 ** Setters
 */
@@ -48,6 +45,12 @@ int			get_envn_index(const char *env, int env_namelen);
 */
 
 int			add_env(const char *env);
+const char	*make_env_int(const char *env_name, int	env_value);
+const char	*make_envn_int(const char *env, int env_namelen, int env_value);
+
+const char	*make_env_str(const char *env_name, const char *env_value);
+const char	*make_envn_str(const char *env, int env_namelen,
+				const char *env_value);
 
 int			get_valid_env_len(const char *env_name);
 int			get_valid_envn_len(const char *env, int env_namelen);
