@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 11:35:01 by alan              #+#    #+#             */
-/*   Updated: 2019/04/17 11:53:09 by alan             ###   ########.fr       */
+/*   Updated: 2019/05/15 16:39:50 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		expand_tilde(t_list **list, char *arg_start, char **chunk_start,
 	home_len = 0;
 	if (tilde_index == arg_start)
 	{
-		home_env = get_env("HOME");
+		home_env = get_env_value("HOME");
 		home_len = ft_strlen(home_env);
 		ft_lstadd_tail(list, ft_lstinit(home_env, home_len));
 		*chunk_start = tilde_index + 1;

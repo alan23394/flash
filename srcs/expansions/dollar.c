@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 08:58:16 by alan              #+#    #+#             */
-/*   Updated: 2019/04/23 00:37:56 by alan             ###   ########.fr       */
+/*   Updated: 2019/05/15 16:39:41 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int			expand_dollar(t_list **list, char **chunk_start,
 	env = get_dollar_envname(chunk_start, &env_len);
 	if (env_len == 0)
 		return (0);
-	env = get_envn(env, env_len);
+	env = get_envn_value(env, env_len);
 	env_len = ft_strlen(env);
 	ft_lstadd_tail(list, ft_lstinit(env, env_len));
 	total_len += env_len;
