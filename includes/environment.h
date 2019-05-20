@@ -52,8 +52,9 @@ int			add_env(const char *env);
 int			get_valid_env_len(const char *env_name);
 int			get_valid_envn_len(const char *env, int env_namelen);
 
-int			validate_env_name(const char *command);
+int			validate_env_name(const char *env_name);
 int			validate_envn_name(const char *env, int env_namelen);
+
 int			validate_env(const char *env);
 
 #endif
