@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 12:34:54 by alan              #+#    #+#             */
-/*   Updated: 2019/04/27 03:04:40 by alan             ###   ########.fr       */
+/*   Updated: 2019/05/15 16:31:12 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ static int	ft_chdir(const char *newdir)
 	if (check_bad_dir(newdir))
 		return (1);
 	wd = getcwd(0, 0);
-	oldpwd = make_env("OLDPWD", wd);
+	oldpwd = make_env_str("OLDPWD", wd);
 	chdir(newdir);
 	ft_strdel((char **)&wd);
 	wd = getcwd(0, 0);
-	newpwd = make_env("PWD", wd);
+	newpwd = make_env_str("PWD", wd);
 	ft_strdel((char **)&wd);
 	add_env(oldpwd);
 	add_env(newpwd);
