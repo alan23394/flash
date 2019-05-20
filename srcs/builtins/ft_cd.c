@@ -70,13 +70,13 @@ static int	ft_chdir(const char *newdir)
 
 int	ft_cd(t_list *args)
 {
-	const char	*home_env;
+	const char	*home_value;
 
 	if (!args)
 	{
-		if ((home_env = get_envn("HOME", 4)) == 0)
+		if ((home_value = get_env_value("HOME")) == 0)
 			return (print_error("cd", "HOME not set"));
-		return (ft_chdir(home_env));
+		return (ft_chdir(home_value));
 	}
 	else
 	{
