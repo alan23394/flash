@@ -6,13 +6,13 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 08:15:49 by alan              #+#    #+#             */
-/*   Updated: 2019/04/24 00:10:55 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/28 05:39:00 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "environment.h"
 #include "ft_string.h"
-#include "ft_printf.h"
+#include "error.h"
 #include <unistd.h>
 #include <sys/stat.h>
 
@@ -24,17 +24,13 @@
 ** TODO fix strlen segfault when using unsafe libft
 */
 
-static char	*get_path_chunk_app(const char *chunk_start, const char *chunk_end,
-				const char *append_string)
+static char	*get_path_chunk_app(const char *chunk_start, int chunk_len,
+				const char *append_string, int app_len)
 {
-	int		chunk_len;
-	int		app_len;
 	char	*new_string;
 
-	chunk_len = (chunk_end - chunk_start) + 1;
 	if (chunk_len <= 0)
 		return (0);
-	app_len = ft_strlen(append_string);
 	new_string = ft_strnew(chunk_len + 1 + app_len);
 	ft_strncpy(new_string, chunk_start, chunk_len);
 	new_string[chunk_len] = '/';
@@ -56,17 +52,7 @@ static int	test_command(char *command)
 	if (!command)
 		return (0);
 	if (stat(command, &stats) == 0)
-	{
-		if (!(stats.st_mode & (S_IXUSR | S_IXGRP | S_IXOTH)))
-		{
-			ft_printf("error: no permissions on %s\n", command);
-			return (-1);
-		}
-		else
-		{
-			return (1);
-		}
-	}
+		return (1);
 	return (0);
 }
 
@@ -81,12 +67,11 @@ static int	test_command(char *command)
 ** TODO: be able to turn on and off path caching (caching in general)
 */
 
-char	*get_command_path(const char *command)
+char	*get_command_path(const char *command, int command_len)
 {
 	const char	*path;
 	int			len;
 	char		*new_command;
-	int			ret;
 
 	path = get_envn("PATH", 4);
 	if (!path)
@@ -94,10 +79,9 @@ char	*get_command_path(const char *command)
 	while (*path)
 	{
 		len = ft_strchr_end(path, ':') - path;
-		new_command = get_path_chunk_app(path, path + len - 1, command);
-		ret = test_command(new_command);
-		if (ret)
-			return ((ret == -1) ? 0 : new_command);
+		new_command = get_path_chunk_app(path, len, command, command_len);
+		if (test_command(new_command))
+			return (new_command);
 		ft_strdel(&new_command);
 		path += len + !!path[len];
 	}

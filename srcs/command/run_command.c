@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 17:33:00 by alan              #+#    #+#             */
-/*   Updated: 2019/04/24 05:57:04 by alan             ###   ########.fr       */
+/*   Updated: 2019/04/28 05:59:42 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		run_command(t_list *args)
 	int			ret;
 
 	d_args = ft_lst_to_darr(args);
-	command_path = get_command_path(d_args[0]);
+	command_path = get_command_path(args->content, args->content_size);
 	if (!command_path)
 	{
 		print_error(d_args[0], "command not found");
