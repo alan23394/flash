@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 08:15:49 by alan              #+#    #+#             */
-/*   Updated: 2019/04/28 05:39:00 by abarnett         ###   ########.fr       */
+/*   Updated: 2019/05/29 03:34:04 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	*get_command_path(const char *command, int command_len)
 	int			len;
 	char		*new_command;
 
-	path = get_envn("PATH", 4);
+	path = get_env_value("PATH");
 	if (!path)
 		return (0);
 	while (*path)
