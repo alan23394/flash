@@ -6,13 +6,35 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 04:24:30 by alan              #+#    #+#             */
-/*   Updated: 2019/04/15 00:32:28 by alan             ###   ########.fr       */
+/*   Updated: 2019/05/29 02:50:07 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "environment.h"
 #include "ft_string.h"
 #include "ft_darr.h"
+
+int		add_envi(const char *env, int env_index)
+{
+	if (env_index == -1)
+	{
+		return ((ft_darradd(&g_environ, env) == 0) ? 0 : 1);
+	}
+	else
+	{
+		ft_strdel((char **)&g_environ[env_index]);
+		g_environ[env_index] = env;
+		return (1);
+	}
+}
+
+int		add_envn(const char *env, int env_namelen)
+{
+	int	env_index;
+
+	env_index = get_envn_index(env, env_namelen);
+	return (add_envi(env, env_index));
+}
 
 /*
 ** This function uses darradd to add a string into a double array.
@@ -33,17 +55,8 @@
 
 int		add_env(const char *env)
 {
-	int	i;
+	int	env_namelen;
 
-	i = get_envn_index(env, ft_strchr(env, '=') - env);
-	if (i != -1)
-	{
-		ft_strdel((char **)&g_environ[i]);
-		g_environ[i] = env;
-	}
-	else if (ft_darradd(&g_environ, env) == 0)
-	{
-		return (0);
-	}
-	return (1);
+	env_namelen = ft_strchr(env, '=') - env;
+	return (add_envn(env, env_namelen));
 }
