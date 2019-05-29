@@ -28,9 +28,12 @@ int			set_envn_int(const char *env, int env_namelen, int env_value);
 int			set_envi_int(int env_index, int env_value);
 
 int			set_env_str(const char *env_name, const char *env_value);
-int			set_envn_str(const char *env, int env_namelen, const char *env_value);
+int			set_envn_str(const char *env, int env_namelen,
+				const char *env_value);
 int			set_envi_str(int env_index, const char *env_value);
 
+int			inc_envn(char *env, int env_namelen);
+int			inc_env(char *env_name);
 
 /*
 ** Getters
