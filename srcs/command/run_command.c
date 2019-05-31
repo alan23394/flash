@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 17:33:00 by alan              #+#    #+#             */
-/*   Updated: 2019/04/28 05:59:42 by abarnett         ###   ########.fr       */
+/*   Updated: 2019/05/31 08:36:58 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,49 @@
 #include "ft_list.h"
 #include "ft_conv.h"
 #include "error.h"
-#include "ft_string.h"
 #include "ft_mem.h"
+#include <unistd.h>
+
+/*
+** This function runs the command specified in the argument list.
+**
+** It first calls get_command_path, which checks for the name of the command in
+** all the folders specified by the $PATH variable. If that function returns 0,
+** then the command was not found. Otherwise, it should return the path to the
+** command.
+**
+** That path is then tested to be executable and readable with access, which
+** returns 0 on success. If it fails, then we do not have permission to execute
+** the file.
+**
+** Once the path is proven to be executable, we convert the list into the
+** double array of arguments to send to call_command, which deals with the
+** forking and executing of the command, and returns 0 on success (TODO: make
+** it return the command's return value). The double array gets deleted at the
+** end without deleting the arguments, this is because the arguments are
+** deleted with the list (it was easier this way).
+*/
 
 int		run_command(t_list *args)
 {
+	const char	*command_path;
 	const char	**d_args;
-	char		*command_path;
 	int			ret;
 
-	d_args = ft_lst_to_darr(args);
 	command_path = get_command_path(args->content, args->content_size);
 	if (!command_path)
 	{
-		print_error(d_args[0], "command not found");
-		return (1);
+		return (print_error(args->content, "command not found"));
 	}
-	ret = call_command(command_path, d_args);
-	ft_memdel((void **)&d_args);
-	return (ret);
+	else if (access(command_path, R_OK | X_OK) != 0)
+	{
+		return (print_error(command_path, "Permission denied"));
+	}
+	else
+	{
+		d_args = ft_lst_to_darr(args);
+		ret = call_command(command_path, d_args);
+		ft_memdel((void **)&d_args);
+		return (ret);
+	}
 }
