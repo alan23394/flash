@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins.c                                         :+:      :+:    :+:   */
+/*   get_builtin_index.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 17:23:13 by alan              #+#    #+#             */
-/*   Updated: 2019/04/25 12:36:07 by alan             ###   ########.fr       */
+/*   Updated: 2019/05/31 09:08:08 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
-#include "ft_word.h"
+#include "ft_string.h"
 #include "ft_list.h"
 
 /*
-** This file is the controller for the builtins
+** Make sure these strings stay up to date with the jump table that calls the
+** functions, found in run_builtin().
 */
 
 static char	*g_builtins[] = {
@@ -28,36 +29,20 @@ static char	*g_builtins[] = {
 };
 
 /*
-** Before using run_builtin, make sure you check the index is valid with
-** check_builtins! This function assumes you've done that already.
+** This function just checks if a command is a builtin, and it returns the
+** index of that builtin if it is. It returns -1 if it is not.
 */
 
-int		run_builtin(int index, t_list *args)
+int		get_builtin_index(const char *command)
 {
-	static int	(*builtins[])() = {
-		[0] = ft_echo,
-		[1] = ft_cd,
-		[2] = ft_setenv,
-		[3] = ft_unsetenv,
-		[4] = ft_env,
-	};
-
-	return (builtins[index](args));
-}
-
-/*
-** This function just checks if a command's first word is a builtin, and it
-** returns the index of that builtin if it is. It returns -1 if it is not.
-*/
-
-int		check_builtins(const char *command)
-{
+	int	command_len;
 	int	i;
 
+	command_len = ft_strlen(command);
 	i = 0;
 	while (g_builtins[i])
 	{
-		if (ft_wordequ(g_builtins[i], command))
+		if (ft_strnequ(g_builtins[i], command, command_len))
 		{
 			return (i);
 		}

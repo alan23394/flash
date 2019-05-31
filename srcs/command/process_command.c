@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 00:02:54 by alan              #+#    #+#             */
-/*   Updated: 2019/04/24 05:14:56 by alan             ###   ########.fr       */
+/*   Updated: 2019/05/31 09:02:46 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,42 @@
 #include "command.h"
 #include "ft_list.h"
 
-int		process_command(t_list *args)
+/*
+** Before using run_builtin, make sure you have a valid builtin index with
+** get_builtin_index! This function assumes you've done that already.
+**
+** Note: this jump table must be in the same order as the list of the command
+** names in get_builtin_index()!
+*/
+
+static int	run_builtin(int index, t_list *args)
 {
-	int	builtin_nr;
+	static int	(*builtins[])() = {
+		ft_echo,
+		ft_cd,
+		ft_setenv,
+		ft_unsetenv,
+		ft_env
+	};
+
+	return (builtins[index](args));
+}
+
+int			process_command(t_list *args)
+{
 	int	ret;
+	int	builtin_index;
 
 	if (!args)
 		return (0);
-	builtin_nr = check_builtins(args->content);
 	ret = 0;
-	if (builtin_nr == -1)
+	builtin_index = get_builtin_index(args->content);
+	if (builtin_index == -1)
 		ret = run_command(args);
 	else
 	{
-		// TODO: decide whether or not to include the name
-		// I imagine it'll make error messages nicer
 		args = args->next;
-		ret = run_builtin(builtin_nr, args);
+		ret = run_builtin(builtin_index, args);
 	}
 	return (ret);
 }
