@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 08:15:49 by alan              #+#    #+#             */
-/*   Updated: 2019/05/29 03:34:04 by alan             ###   ########.fr       */
+/*   Updated: 2019/05/29 10:01:51 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 ** TODO fix strlen segfault when using unsafe libft
 */
 
-static char	*get_path_chunk_app(const char *chunk_start, int chunk_len,
-				const char *append_string, int app_len)
+static const char	*get_path_chunk_app(const char *chunk_start, int chunk_len,
+						const char *append_string, int app_len)
 {
 	char	*new_string;
 
@@ -35,25 +35,7 @@ static char	*get_path_chunk_app(const char *chunk_start, int chunk_len,
 	ft_strncpy(new_string, chunk_start, chunk_len);
 	new_string[chunk_len] = '/';
 	ft_strncpy(new_string + chunk_len + 1, append_string, app_len);
-	return (new_string);
-}
-
-/*
-** This function tests if the command (which represents the full path to an
-** executable) exists. If it does not exist, the function returns 0. If it
-** does, and it's executable, it returns 1. If it exists and is not executable,
-** it prints an error message and returns -1.
-*/
-
-static int	test_command(char *command)
-{
-	struct stat	stats;
-
-	if (!command)
-		return (0);
-	if (stat(command, &stats) == 0)
-		return (1);
-	return (0);
+	return ((const char *)new_string);
 }
 
 /*
@@ -67,11 +49,11 @@ static int	test_command(char *command)
 ** TODO: be able to turn on and off path caching (caching in general)
 */
 
-char	*get_command_path(const char *command, int command_len)
+const char			*get_command_path(const char *command, int command_len)
 {
 	const char	*path;
 	int			len;
-	char		*new_command;
+	const char	*new_command;
 
 	path = get_env_value("PATH");
 	if (!path)
@@ -80,9 +62,11 @@ char	*get_command_path(const char *command, int command_len)
 	{
 		len = ft_strchr_end(path, ':') - path;
 		new_command = get_path_chunk_app(path, len, command, command_len);
-		if (test_command(new_command))
+		if (access(new_command, F_OK) == 0)
+		{
 			return (new_command);
-		ft_strdel(&new_command);
+		}
+		ft_strdel((char **)&new_command);
 		path += len + !!path[len];
 	}
 	return (0);
