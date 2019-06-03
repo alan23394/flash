@@ -6,11 +6,13 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 13:45:18 by alan              #+#    #+#             */
-/*   Updated: 2019/04/05 16:52:57 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/01 12:12:52 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+
+const char	*g_shell_name;
 
 #endif

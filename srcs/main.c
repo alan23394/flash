@@ -6,10 +6,11 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 13:46:05 by alan              #+#    #+#             */
-/*   Updated: 2019/05/31 09:17:55 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/01 12:20:50 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
 #include "environment.h"
 #include "expansions.h"
 #include "command.h"
@@ -53,18 +54,20 @@ static int	shell_loop(void)
 	return (0);
 }
 
-void	shell_setup(void)
+void	shell_setup(const char *str)
 {
 	inc_env("SHLVL");
+	g_shell_name = str;
 	print_prompt(1);
 }
 
-int		main(void)
+int		main(int argc, char **argv)
 {
 	extern char	**environ;
 
+	(void)argc;
 	g_environ = ft_dup_darr((const char **)environ);
-	shell_setup();
+	shell_setup((const char *)argv[0]);
 	shell_loop();
 	return (0);
 }
