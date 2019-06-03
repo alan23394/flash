@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 13:46:05 by alan              #+#    #+#             */
-/*   Updated: 2019/06/01 12:20:50 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/02 23:32:24 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,35 @@ static int	shell_loop(void)
 	return (0);
 }
 
-void	shell_setup(const char *str)
+/*
+** This function returns a pointer to the last component of the path
+** First set name to the last /
+** If there wasn't a /, ft_strrchr will return 0
+** If it didn't return 0, move name after the /
+** If it did return zero, set it to the path
+** Return name
+*/
+
+static const char	*get_name_from_path(const char *path)
+{
+	const char	*name;
+
+	name = ft_strrchr(path, '/');
+	if (name)
+	{
+		name += 1;
+	}
+	else
+	{
+		name = path;
+	}
+	return (name);
+}
+
+void		shell_setup(const char *shell_name)
 {
 	inc_env("SHLVL");
-	g_shell_name = str;
+	g_shell_name = get_name_from_path(shell_name);
 	print_prompt(1);
 }
 
