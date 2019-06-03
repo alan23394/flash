@@ -14,5 +14,7 @@
 # define ERROR_H
 
 int	print_error(const char *command, const char *error);
+int	print_builtin_error(const char *builtin, const char *command,
+		const char *error);
 
 #endif
