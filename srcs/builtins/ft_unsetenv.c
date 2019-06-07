@@ -6,34 +6,36 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 06:01:34 by alan              #+#    #+#             */
-/*   Updated: 2019/04/25 22:30:35 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/06 14:19:20 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "environment.h"
-#include "ft_printf.h"
+#include "error.h"
 #include "ft_list.h"
 #include "ft_darr.h"
 
 int	ft_unsetenv(t_list *args)
 {
 	int			ret;
+	const char	*builtin_name;
 
+	if (!args)
+		return (print_error("ft_unsetenv", E_NOARGS));
+	builtin_name = args->content;
+	args = args->next;
 	if (!args || !args->content)
-	{
-		ft_printfd(2, "needs arguments dude\n");
-		return (1);
-	}
+		return (print_error(builtin_name, E_NOARGS));
 	while (args && args->content)
 	{
-		ret = validate_env_name(args->content);
+		ret = validate_envn_name(args->content, args->content_size);
 		if (ret == 0)
-			ft_printfd(2, "error \"%s\" bad\n", args->content);
+			print_builtin_error(builtin_name, args->content, E_BADENVNAME);
 		else
 		{
-			ret = get_env_index(args->content);
+			ret = get_envn_index(args->content, args->content_size);
 			if (ret == -1)
-				ft_printfd(2, "error no such environ \"%s\"\n", args->content);
+				print_builtin_error(builtin_name, args->content, E_NOSUCHENV);
 			else
 				ft_darrrm_i(&g_environ, ret);
 		}

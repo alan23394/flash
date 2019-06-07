@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 17:33:00 by alan              #+#    #+#             */
-/*   Updated: 2019/05/31 08:36:58 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/06 13:39:47 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ int		run_command(t_list *args)
 	command_path = get_command_path(args->content, args->content_size);
 	if (!command_path)
 	{
-		return (print_error(args->content, "command not found"));
+		return (print_error(args->content, E_NOTACOMMAND));
 	}
 	else if (access(command_path, R_OK | X_OK) != 0)
 	{
-		return (print_error(command_path, "Permission denied"));
+		return (print_error(command_path, E_NOPERMISSION));
 	}
 	else
 	{

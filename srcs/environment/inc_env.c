@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 03:08:32 by alan              #+#    #+#             */
-/*   Updated: 2019/05/29 02:47:44 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/06 13:45:26 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int				inc_envn(char *env, int env_namelen)
 	env_index = get_envn_index(env, env_namelen);
 	new_env = get_inc_env_str(env_index, env_namelen);
 	if (new_env == 0)
-		return (print_error("inc_env", "expected integer"));
+		return (print_error("inc_env", E_EXPECTEDINT));
 	return (add_envi(new_env, env_index));
 }
 

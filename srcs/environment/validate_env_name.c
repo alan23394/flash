@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 06:05:58 by alan              #+#    #+#             */
-/*   Updated: 2019/05/16 15:07:38 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/06 13:48:11 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	validate_envn_name(const char *env, int env_namelen)
 {
 	int	len;
 
+	if (!env || !env_namelen)
+		return (0);
 	len = get_valid_envn_len(env, env_namelen);
 	if (len == env_namelen)
 		return (1);

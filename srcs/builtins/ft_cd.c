@@ -6,50 +6,52 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 12:34:54 by alan              #+#    #+#             */
-/*   Updated: 2019/05/15 16:31:12 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/06 13:54:50 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "environment.h"
+#include "error.h"
 #include "ft_string.h"
 #include "ft_printf.h"
 #include "ft_list.h"
-#include "error.h"
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/stat.h>
 
-static int	check_bad_dir(const char *filename)
+static enum ERROR_CODE	check_bad_dir(const char *filename)
 {
 	int			ret;
 	struct stat	stats;
 
 	ret = access(filename, F_OK);
 	if (ret == -1)
-		return (print_error("cd", "No such file or directory"));
+		return (E_NOFILEORDIR);
 	else
 	{
 		ret = lstat(filename, &stats);
 		if (ret == 0)
 		{
 			if ((stats.st_mode & S_IFDIR) == 0)
-				return (print_error("cd", "Not a directory"));
+				return (E_NOTADIR);
 			if (access(filename, X_OK) == -1)
-				return (print_error("cd", "Permission denied"));
+				return (E_NOPERMISSION);
 			return (0);
 		}
-		return (1);
+		return (E_LSTATFAIL);
 	}
 }
 
-static int	ft_chdir(const char *newdir)
+static enum ERROR_CODE	ft_chdir(const char *newdir)
 {
-	const char	*wd;
-	const char	*oldpwd;
-	const char	*newpwd;
+	const char		*wd;
+	const char		*oldpwd;
+	const char		*newpwd;
+	enum ERROR_CODE	error_code;
 
-	if (check_bad_dir(newdir))
-		return (1);
+	error_code = check_bad_dir(newdir);
+	if (error_code != 0)
+		return (error_code);
 	wd = getcwd(0, 0);
 	oldpwd = make_env_str("OLDPWD", wd);
 	chdir(newdir);
@@ -68,20 +70,30 @@ static int	ft_chdir(const char *newdir)
 ** If more than one: error
 */
 
-int	ft_cd(t_list *args)
+int						ft_cd(t_list *args)
 {
-	const char	*home_value;
+	const char		*dir;
+	const char		*builtin_name;
+	enum ERROR_CODE	error_code;
 
 	if (!args)
+		return (print_error("ft_cd", E_NOARGS));
+	builtin_name = args->content;
+	args = args->next;
+	if (!args)
 	{
-		if ((home_value = get_env_value("HOME")) == 0)
-			return (print_error("cd", "HOME not set"));
-		return (ft_chdir(home_value));
+		dir = get_env_value("HOME");
+		if (!dir)
+			return (print_error(builtin_name, E_HOMENOTSET));
 	}
 	else
 	{
 		if (args->next)
-			return (print_error("cd", "too many arguments"));
-		return (ft_chdir(args->content));
+			return (print_error(builtin_name, E_TOOMANYARGS));
+		dir = args->content;
 	}
+	error_code = ft_chdir(dir);
+	if (error_code != 0)
+		return (print_builtin_error(builtin_name, dir, error_code));
+	return (0);
 }

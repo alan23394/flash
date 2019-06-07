@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/02 23:33:46 by alan              #+#    #+#             */
-/*   Updated: 2019/06/02 23:44:39 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/06 13:48:02 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int		shell_loop(void)
 			(((ret = get_next_line(0, &line)) != 0) && (cur = line)))
 	{
 		if (ret == -1)
-			return (print_error("get_next_line", "couldn't make memory"));
+			return (print_error("get_next_line", E_GNLFAIL));
 		args = expand_command(&cur);
 		if (args && ft_strequ(args->content, "exit"))
 			break ;

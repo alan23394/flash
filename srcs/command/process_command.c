@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 00:02:54 by alan              #+#    #+#             */
-/*   Updated: 2019/05/31 09:02:46 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/02 23:58:17 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,6 @@ int			process_command(t_list *args)
 	if (builtin_index == -1)
 		ret = run_command(args);
 	else
-	{
-		args = args->next;
 		ret = run_builtin(builtin_index, args);
-	}
 	return (ret);
 }

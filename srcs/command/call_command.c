@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 23:52:42 by alan              #+#    #+#             */
-/*   Updated: 2019/05/30 03:52:36 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/06 13:38:14 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ int		call_command(const char *command, const char **args)
 	pid = fork();
 	if (pid < 0)
 	{
-		return (print_error("call_command", "fork failed"));
+		return (print_error("call_command", E_FORKFAIL));
 	}
 	else if (pid == 0)
 	{
 		execve(command, (char * const *)args, (char * const *)g_environ);
-		exit(print_error("call_command: couldn't execute", command));
+		exit(print_builtin_error("call_command", command, E_EXECFAIL));
 	}
 	else
 	{
