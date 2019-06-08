@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 17:33:00 by alan              #+#    #+#             */
-/*   Updated: 2019/06/06 13:39:47 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/08 05:17:34 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "ft_conv.h"
 #include "error.h"
 #include "ft_mem.h"
+#include "ft_string.h"
 #include <unistd.h>
 
 /*
@@ -57,6 +58,7 @@ int		run_command(t_list *args)
 		d_args = ft_lst_to_darr(args);
 		ret = call_command(command_path, d_args);
 		ft_memdel((void **)&d_args);
+		ft_strdel((char **)&command_path);
 		return (ret);
 	}
 }
