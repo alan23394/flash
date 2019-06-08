@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 08:35:42 by alan              #+#    #+#             */
-/*   Updated: 2019/06/06 14:14:36 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/08 05:22:22 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ int	ft_echo(t_list *args)
 	args = args->next;
 	comb_str = echo_comb(args);
 	ft_putstr(comb_str);
+	ft_strdel((char **)&comb_str);
 	return (0);
 }
