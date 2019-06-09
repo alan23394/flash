@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 23:52:42 by alan              #+#    #+#             */
-/*   Updated: 2019/06/06 13:38:14 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/08 19:16:44 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		call_command(const char *command, const char **args)
 	}
 	else if (pid == 0)
 	{
-		execve(command, (char * const *)args, (char * const *)g_environ);
+		execve(command, (char *const *)args, (char *const *)g_environ);
 		exit(print_builtin_error("call_command", command, E_EXECFAIL));
 	}
 	else
