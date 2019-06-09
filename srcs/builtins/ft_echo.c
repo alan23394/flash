@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 08:35:42 by alan              #+#    #+#             */
-/*   Updated: 2019/06/08 05:22:22 by abarnett         ###   ########.fr       */
+/*   Updated: 2019/06/08 19:15:45 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 ** to the amount of nodes.
 */
 
-static int	lst_content_len(t_list *list, int *len)
+static int			lst_content_len(t_list *list, int *len)
 {
 	int	total_len;
 
@@ -69,7 +69,7 @@ static const char	*echo_comb(t_list *args)
 	return (new_string);
 }
 
-int	ft_echo(t_list *args)
+int					ft_echo(t_list *args)
 {
 	const char	*comb_str;
 

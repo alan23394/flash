@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 02:07:59 by alan              #+#    #+#             */
-/*   Updated: 2019/05/16 14:56:38 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/08 19:14:21 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ static void			ft_nbrcpy(long long nb, char *str)
 ** environment variables, it only makes a new string and returns it.
 */
 
-const char	*make_envn_int(const char *env, int env_namelen, int env_value)
+const char			*make_envn_int(const char *env, int env_namelen,
+						int env_value)
 {
 	int		value_len;
 	char	*new_env;
@@ -67,7 +68,7 @@ const char	*make_envn_int(const char *env, int env_namelen, int env_value)
 ** using make_envn_str, which takes the string length of the name.
 */
 
-const char	*make_env_int(const char *env_name, int env_value)
+const char			*make_env_int(const char *env_name, int env_value)
 {
 	if (!env_name)
 		return (0);

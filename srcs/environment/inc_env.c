@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 03:08:32 by alan              #+#    #+#             */
-/*   Updated: 2019/06/06 13:45:26 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/08 19:13:49 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static const char	*get_inc_env_str(int env_index, int env_namelen)
 ** If the variable doesn't exist in the environment, it is set to 1.
 */
 
-int				inc_envn(char *env, int env_namelen)
+int					inc_envn(char *env, int env_namelen)
 {
 	int			env_index;
 	const char	*new_env;
@@ -74,7 +74,7 @@ int				inc_envn(char *env, int env_namelen)
 ** Returns 0 on success, 1 on failure
 */
 
-int				inc_env(char *env_name)
+int					inc_env(char *env_name)
 {
 	if (!env_name)
 		return (1);
