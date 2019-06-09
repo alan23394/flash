@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 08:58:16 by alan              #+#    #+#             */
-/*   Updated: 2019/05/15 16:39:41 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/09 03:52:20 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,6 @@ static char	*get_dollar_envname(char **dollar_index, int *len)
 ** get_dollar_envname). env_len is then set to the length of the env value, so
 ** that it can be properly added into the linked list and the total size can be
 ** updated.
-**
-** TODO: as it sits, this function makes a chunk every time it enters (and
-** there is a chunk to be made), even if it doesn't have to add an expansion.
-** This is too much, I should limit it to only add a chunk when there is also
-** an expansion to prevent making extra links for no reason.
 */
 
 int			expand_dollar(t_list **list, char **chunk_start,
@@ -70,14 +65,21 @@ int			expand_dollar(t_list **list, char **chunk_start,
 	int			total_len;
 	int			env_len;
 
-	total_len = get_chunk(list, *chunk_start, dollar_index - 1);
-	*chunk_start = dollar_index;
+	total_len = 0;
+	if (*chunk_start != dollar_index)
+	{
+		total_len = get_chunk(list, *chunk_start, dollar_index - 1);
+		*chunk_start = dollar_index;
+	}
 	env = get_dollar_envname(chunk_start, &env_len);
 	if (env_len == 0)
 		return (0);
 	env = get_envn_value(env, env_len);
-	env_len = ft_strlen(env);
-	ft_lstadd_tail(list, ft_lstinit(env, env_len));
-	total_len += env_len;
+	if (env)
+	{
+		env_len = ft_strlen(env);
+		ft_lstadd_tail(list, ft_lstinit(env, env_len));
+		total_len += env_len;
+	}
 	return (total_len);
 }
