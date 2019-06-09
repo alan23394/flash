@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 16:25:45 by alan              #+#    #+#             */
-/*   Updated: 2019/04/17 14:58:49 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/08 19:17:19 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,21 @@
 ** They are also subject to change, that's just the plan for now
 */
 
-static void	prompt_1()
+static void	prompt_1(void)
 {
 	ft_printf("%s>>> %s",
 			MAGENTA,
 			NORMAL);
 }
 
-static void	prompt_2()
+static void	prompt_2(void)
 {
 	ft_printf("%s\'> %s",
 			DARK_MAGENTA,
 			NORMAL);
 }
 
-static void	prompt_3()
+static void	prompt_3(void)
 {
 	ft_printf("%s\"> %s",
 			DARK_MAGENTA,
