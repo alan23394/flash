@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 18:11:06 by alan              #+#    #+#             */
-/*   Updated: 2019/06/06 15:51:00 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/08 20:58:31 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@
 **
 ** The error messages start at 1, so that's why the first parameter in this
 ** list is 0 (i.e. no string).
-** The ERROR_CODE type is an enum, and ERROR_MESSAGE_COUNT is the last item, so
+** The e_err_code type is an enum, and ERROR_MESSAGE_COUNT is the last item, so
 ** it is one larger than the last error message (i.e. a valid error message
 ** must be less than that number).
 */
 
-const char	*get_error_string(enum ERROR_CODE error_code)
+const char	*get_error_string(enum e_err_code error_code)
 {
 	static const char	*error_strings[ERROR_MESSAGE_COUNT] = {
 		0,
@@ -52,9 +52,9 @@ const char	*get_error_string(enum ERROR_CODE error_code)
 	return (0);
 }
 
-int			print_error(const char *command, enum ERROR_CODE error_code)
+int			print_error(const char *command, enum e_err_code error_code)
 {
-	const char 	*error;
+	const char	*error;
 
 	error = get_error_string(error_code);
 	ft_printfd(2, "%s: %s: %s\n", g_shell_name, command, error);
@@ -62,9 +62,9 @@ int			print_error(const char *command, enum ERROR_CODE error_code)
 }
 
 int			print_builtin_error(const char *builtin, const char *command,
-				enum ERROR_CODE error_code)
+				enum e_err_code error_code)
 {
-	const char 	*error;
+	const char	*error;
 
 	error = get_error_string(error_code);
 	ft_printfd(2, "%s: %s: %s: %s\n", g_shell_name, builtin, command, error);

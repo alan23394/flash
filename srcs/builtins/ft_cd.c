@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 12:34:54 by alan              #+#    #+#             */
-/*   Updated: 2019/06/06 13:54:50 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/08 20:43:47 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 
-static enum ERROR_CODE	check_bad_dir(const char *filename)
+static enum e_err_code	check_bad_dir(const char *filename)
 {
 	int			ret;
 	struct stat	stats;
@@ -42,12 +42,12 @@ static enum ERROR_CODE	check_bad_dir(const char *filename)
 	}
 }
 
-static enum ERROR_CODE	ft_chdir(const char *newdir)
+static enum e_err_code	ft_chdir(const char *newdir)
 {
 	const char		*wd;
 	const char		*oldpwd;
 	const char		*newpwd;
-	enum ERROR_CODE	error_code;
+	enum e_err_code	error_code;
 
 	error_code = check_bad_dir(newdir);
 	if (error_code != 0)
@@ -74,7 +74,7 @@ int						ft_cd(t_list *args)
 {
 	const char		*dir;
 	const char		*builtin_name;
-	enum ERROR_CODE	error_code;
+	enum e_err_code	error_code;
 
 	if (!args)
 		return (print_error("ft_cd", E_NOARGS));

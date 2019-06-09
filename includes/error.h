@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 05:12:09 by alan              #+#    #+#             */
-/*   Updated: 2019/06/06 15:51:04 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/09 03:30:44 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 ** get_error_string function.
 */
 
-enum	ERROR_CODE
+enum	e_err_code
 {
 	E_NOARGS = 1,
 	E_TOOMANYARGS,
@@ -43,8 +43,8 @@ enum	ERROR_CODE
 	ERROR_MESSAGE_COUNT,
 };
 
-int		print_error(const char *command, enum ERROR_CODE error_code);
+int		print_error(const char *command, enum e_err_code error_code);
 int		print_builtin_error(const char *builtin, const char *command,
-			enum ERROR_CODE error_code);
+			enum e_err_code error_code);
 
 #endif
