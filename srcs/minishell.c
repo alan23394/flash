@@ -32,26 +32,39 @@ void	shell_setup(const char *shell_launch_path)
 	print_prompt(1);
 }
 
+int		process_line(const char **line_cursor)
+{
+	t_list	*args;
+	int		ret;
+
+	ret = 0;
+	args = expand_command(line_cursor);
+	if (!args)
+		return (0);
+	if (ft_strequ(args->content, "exit"))
+		return (-1);
+	ret = process_command(args);
+	ft_lstdel(&args, ft_lstmemdel);
+	return (ret);
+}
+
 int		shell_loop(void)
 {
 	const char	*cur;
 	char		*line;
 	int			ret;
-	t_list		*args;
 
 	cur = 0;
 	ret = 0;
-	args = 0;
 	while ((cur && *cur) ||
-			(((ret = get_next_line(0, &line)) != 0) && (cur = line)))
+			(((ret = get_next_line(0, &line)) != 0) &&
+				(cur = line)))
 	{
 		if (ret == -1)
 			return (print_error("get_next_line", E_GNLFAIL));
-		args = expand_command(&cur);
-		if (args && ft_strequ(args->content, "exit"))
+		ret = process_line(&cur);
+		if (ret == -1)
 			break ;
-		ret = process_command(args);
-		ft_lstdel(&args, ft_lstmemdel);
 		if (*cur == '\0')
 		{
 			ft_strdel(&line);
@@ -60,7 +73,6 @@ int		shell_loop(void)
 		}
 		ret = 0;
 	}
-	ft_lstdel(&args, ft_lstmemdel);
 	ft_strdel(&line);
 	return (0);
 }
