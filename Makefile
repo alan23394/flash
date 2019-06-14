@@ -6,7 +6,7 @@
 #    By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/05 13:42:22 by alan              #+#    #+#              #
-#    Updated: 2019/04/24 00:10:07 by alan             ###   ########.fr        #
+#    Updated: 2019/06/09 03:57:10 by abarnett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,11 +46,11 @@ $(NAME): $(LIB) $(C_OBJS)
 -include $(DEPENDS)
 
 clean:
-#	@- $(MAKE_LIBRARY) clean
+	@- $(MAKE_LIBRARY) clean
 	@- $(RM) $(C_OBJS) $(DEPENDS)
 
 fclean: clean
-#	@- $(MAKE_LIBRARY) fclean
+	@- $(MAKE_LIBRARY) fclean
 	@- $(RM) $(NAME)
 
 re: fclean all
