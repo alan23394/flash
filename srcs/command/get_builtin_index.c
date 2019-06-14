@@ -6,12 +6,13 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 17:23:13 by alan              #+#    #+#             */
-/*   Updated: 2019/05/31 09:08:08 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/11 01:42:11 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 #include "ft_string.h"
+#include "ft_word.h"
 #include "ft_list.h"
 
 /*
@@ -42,7 +43,7 @@ int		get_builtin_index(const char *command)
 	i = 0;
 	while (g_builtins[i])
 	{
-		if (ft_strnequ(g_builtins[i], command, command_len))
+		if (ft_wordnequ(g_builtins[i], command, command_len))
 		{
 			return (i);
 		}
