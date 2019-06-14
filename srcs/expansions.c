@@ -6,14 +6,13 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 08:02:16 by alan              #+#    #+#             */
-/*   Updated: 2019/04/25 10:13:15 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/09 04:30:17 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expansions.h"
 #include "ft_string.h"
 #include "ft_utils.h"
-#include "ft_printf.h"
 #include "ft_list.h"
 
 /*
@@ -23,12 +22,12 @@
 ** sets the len pointer passed in to the length of the string it returns.
 */
 
-static char	*expand_arg(char **command, int *len)
+static const char	*expand_arg(const char **command, int *len)
 {
-	t_list	*arg_list;
-	size_t	arg_len;
-	char	*arg;
-	char	*chunk_start;
+	t_list		*arg_list;
+	size_t		arg_len;
+	const char	*arg;
+	const char	*chunk_start;
 
 	arg_list = 0;
 	arg_len = 0;
@@ -50,11 +49,11 @@ static char	*expand_arg(char **command, int *len)
 	return (arg);
 }
 
-t_list		*expand_command(char **command)
+t_list				*expand_command(const char **command)
 {
-	t_list	*list;
-	char	*new_command;
-	int		arg_len;
+	t_list		*list;
+	const char	*new_command;
+	int			arg_len;
 
 	list = 0;
 	arg_len = 0;
@@ -62,7 +61,7 @@ t_list		*expand_command(char **command)
 		return (0);
 	while (**command && **command != ';')
 	{
-		*command = (char *)ft_skipspace(*command);
+		*command = ft_skipspace(*command);
 		if (**command && **command != ';')
 		{
 			new_command = expand_arg(command, &arg_len);

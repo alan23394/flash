@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/02 23:33:46 by alan              #+#    #+#             */
-/*   Updated: 2019/06/06 13:48:02 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/09 04:46:09 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	shell_setup(const char *shell_launch_path)
 
 int		shell_loop(void)
 {
-	char		*cur;
+	const char	*cur;
 	char		*line;
 	int			ret;
 	t_list		*args;

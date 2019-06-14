@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 11:35:01 by alan              #+#    #+#             */
-/*   Updated: 2019/05/15 16:39:50 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/09 04:05:08 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 ** there should never be anything before a tilde in an argument.
 */
 
-int		expand_tilde(t_list **list, char *arg_start, char **chunk_start,
-			char *tilde_index)
+int		expand_tilde(t_list **list, const char *arg_start,
+			const char **chunk_start, const char *tilde_index)
 {
 	const char	*home_env;
 	int			home_len;

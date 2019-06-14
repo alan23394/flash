@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 08:58:16 by alan              #+#    #+#             */
-/*   Updated: 2019/06/09 03:52:20 by abarnett         ###   ########.fr       */
+/*   Updated: 2019/06/09 04:34:16 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 ** It returns 0 (and doesn't move the dollar_index) if no expansion was found.
 */
 
-static char	*get_dollar_envname(char **dollar_index, int *len)
+static const char	*get_dollar_envname(const char **dollar_index, int *len)
 {
-	char	*env_name;
+	const char	*env_name;
 
 	if (*(*dollar_index + 1) == '{')
 	{
@@ -58,8 +58,8 @@ static char	*get_dollar_envname(char **dollar_index, int *len)
 ** updated.
 */
 
-int			expand_dollar(t_list **list, char **chunk_start,
-				char *dollar_index)
+int					expand_dollar(t_list **list, const char **chunk_start,
+						const char *dollar_index)
 {
 	const char	*env;
 	int			total_len;
