@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/02 23:33:46 by alan              #+#    #+#             */
-/*   Updated: 2019/06/09 04:46:09 by abarnett         ###   ########.fr       */
+/*   Updated: 2019/06/14 20:34:13 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,16 @@ int		shell_loop(void)
 	const char	*cur;
 	char		*line;
 	int			ret;
+	int			last_ret;
 
 	cur = 0;
 	ret = 0;
-	while ((cur && *cur) ||
-			(((ret = get_next_line(0, &line)) != 0) &&
+	while ((cur && *cur) || (((ret = get_next_line(0, &line)) != 0) &&
 				(cur = line)))
 	{
 		if (ret == -1)
 			return (print_error("get_next_line", E_GNLFAIL));
-		ret = process_line(&cur);
-		if (ret == -1)
+		if ((ret = process_line(&cur)) == -1)
 			break ;
 		if (*cur == '\0')
 		{
@@ -71,8 +70,9 @@ int		shell_loop(void)
 			cur = 0;
 			print_prompt(1);
 		}
+		last_ret = ret;
 		ret = 0;
 	}
 	ft_strdel(&line);
-	return (0);
+	return (last_ret);
 }
