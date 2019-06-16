@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 12:34:54 by alan              #+#    #+#             */
-/*   Updated: 2019/06/08 20:43:47 by abarnett         ###   ########.fr       */
+/*   Updated: 2019/06/15 22:24:13 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static enum e_err_code	check_bad_dir(const char *filename)
 		return (E_NOFILEORDIR);
 	else
 	{
-		ret = lstat(filename, &stats);
+		ret = stat(filename, &stats);
 		if (ret == 0)
 		{
 			if ((stats.st_mode & S_IFDIR) == 0)
@@ -38,7 +38,7 @@ static enum e_err_code	check_bad_dir(const char *filename)
 				return (E_NOPERMISSION);
 			return (0);
 		}
-		return (E_LSTATFAIL);
+		return (E_STATFAIL);
 	}
 }
 
