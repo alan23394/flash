@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 17:33:00 by alan              #+#    #+#             */
-/*   Updated: 2019/06/08 05:17:34 by abarnett         ###   ########.fr       */
+/*   Updated: 2019/06/21 20:15:41 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ int		run_command(t_list *args)
 	}
 	else if (access(command_path, R_OK | X_OK) != 0)
 	{
-		return (print_error(command_path, E_NOPERMISSION));
+		ret = print_error(command_path, E_NOPERMISSION);
 	}
 	else
 	{
 		d_args = ft_lst_to_darr(args);
 		ret = call_command(command_path, d_args);
 		ft_memdel((void **)&d_args);
-		ft_strdel((char **)&command_path);
-		return (ret);
 	}
+	ft_strdel((char **)&command_path);
+	return (ret);
 }
