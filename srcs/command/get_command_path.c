@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 08:15:49 by alan              #+#    #+#             */
-/*   Updated: 2019/06/21 20:15:33 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/21 21:05:49 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,15 @@ static const char	*get_path_chunk_app(const char *chunk_start, int chunk_len,
 /*
 ** This function returns the full path of a command, after searching the PATH
 ** environment variable. It returns 1 if found, 0 otherwise.
+** If the command contains a /, we don't append it to the normal path, just
+** check if it exists.
+** If there is no path string, we check in the current directory.
 **
 ** The path += len + !!path[len] trick does this:
 ** 	move path len bytes forward. If path[len] is not the null terminator, move
 ** 	over one more character.
-** !!x turns it into a bool, so if x is 4112898 it's 1 and if it's 0 it's 0.
+** !!x turns it into a bool, so if x is any non-zero int it gets turned into 1,
+** and if it's zero then it stays at zero.
 ** TODO: be able to turn on and off path caching (caching in general)
 */
 
@@ -56,18 +60,20 @@ const char			*get_command_path(const char *command, int command_len)
 	const char	*new_command;
 
 	if (ft_strchr(command, '/'))
-		return ((const char *)ft_strdup(command));
+	{
+		if (access(command, F_OK) == 0)
+			return ((const char *)ft_strdup(command));
+		return (0);
+	}
 	path = get_env_value("PATH");
 	if (!path)
-		return (ft_strndup(command, command_len));
+		path = ".";
 	while (*path)
 	{
-		len = ft_strchr_end(path, ':') - path;
+		len = ft_strchr_i_end(path, ':');
 		new_command = get_path_chunk_app(path, len, command, command_len);
 		if (access(new_command, F_OK) == 0)
-		{
 			return (new_command);
-		}
 		ft_strdel((char **)&new_command);
 		path += len + !!path[len];
 	}
