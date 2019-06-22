@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 18:11:06 by alan              #+#    #+#             */
-/*   Updated: 2019/06/08 20:58:31 by abarnett         ###   ########.fr       */
+/*   Updated: 2019/06/21 19:47:50 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ const char	*get_error_string(enum e_err_code error_code)
 		"Not a directory",
 		"No such file or directory",
 		"HOME not set",
+		"OLDPWD not set",
+		"Can't change directory",
 		"Bad environment variable",
 		"Bad environment variable name",
 		"No such environment variable",

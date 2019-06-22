@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 05:12:09 by alan              #+#    #+#             */
-/*   Updated: 2019/06/09 03:30:44 by abarnett         ###   ########.fr       */
+/*   Updated: 2019/06/21 19:47:50 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ enum	e_err_code
 	E_NOTADIR,
 	E_NOFILEORDIR,
 	E_HOMENOTSET,
+	E_NOOLDPWD,
+	E_CHDIRFAIL,
 	E_BADENV,
 	E_BADENVNAME,
 	E_NOSUCHENV,

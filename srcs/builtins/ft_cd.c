@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 12:34:54 by alan              #+#    #+#             */
-/*   Updated: 2019/06/15 22:24:13 by abarnett         ###   ########.fr       */
+/*   Updated: 2019/06/21 19:48:07 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,25 +44,43 @@ static enum e_err_code	check_bad_dir(const char *filename)
 
 static enum e_err_code	ft_chdir(const char *newdir)
 {
-	const char		*wd;
 	const char		*oldpwd;
 	const char		*newpwd;
 	enum e_err_code	error_code;
 
-	error_code = check_bad_dir(newdir);
-	if (error_code != 0)
+	if ((error_code = check_bad_dir(newdir)) != 0)
 		return (error_code);
-	wd = getcwd(0, 0);
-	oldpwd = make_env_str("OLDPWD", wd);
-	chdir(newdir);
-	ft_strdel((char **)&wd);
-	wd = getcwd(0, 0);
-	newpwd = make_env_str("PWD", wd);
-	ft_strdel((char **)&wd);
+	error_code = chdir(newdir);
+	if (error_code != 0)
+	{
+		ft_strdel((char **)&newdir);
+		return (E_CHDIRFAIL);
+	}
+	newdir = getcwd(0, 0);
+	oldpwd = make_env_str("OLDPWD", get_cd_wd());
+	set_cd_wd(newdir);
+	newpwd = make_env_str("PWD", get_cd_wd());
 	add_env(oldpwd);
 	add_env(newpwd);
 	return (0);
 }
+
+static int				cd_arg(const char *builtin_name, const char *arg)
+{
+	enum e_err_code	error_code;
+
+	if (ft_strequ(arg, "-"))
+	{
+		arg = get_env_value("OLDPWD");
+		if (!arg)
+			return (E_NOOLDPWD);
+	}
+	error_code = ft_chdir(arg);
+	if (error_code != 0)
+		return (print_builtin_error(builtin_name, arg, error_code));
+	return (0);
+}
+
 
 /*
 ** If no args: cd $HOME
@@ -74,7 +92,6 @@ int						ft_cd(t_list *args)
 {
 	const char		*dir;
 	const char		*builtin_name;
-	enum e_err_code	error_code;
 
 	if (!args)
 		return (print_error("ft_cd", E_NOARGS));
@@ -92,8 +109,5 @@ int						ft_cd(t_list *args)
 			return (print_error(builtin_name, E_TOOMANYARGS));
 		dir = args->content;
 	}
-	error_code = ft_chdir(dir);
-	if (error_code != 0)
-		return (print_builtin_error(builtin_name, dir, error_code));
-	return (0);
+	return (cd_arg(builtin_name, dir));
 }
