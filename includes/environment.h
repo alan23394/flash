@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 21:10:35 by alan              #+#    #+#             */
-/*   Updated: 2019/05/28 21:43:05 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/21 19:34:22 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int			set_envn_str(const char *env, int env_namelen,
 				const char *env_value);
 int			set_envi_str(int env_index, const char *env_value);
 
+void		set_cd_wd(const char *path);
+
 int			inc_envn(char *env, int env_namelen);
 int			inc_env(char *env_name);
 
@@ -47,6 +49,8 @@ const char	*get_envi_value(int env_index);
 
 int			get_env_index(const char *env_name);
 int			get_envn_index(const char *env, int env_namelen);
+
+const char	*get_cd_wd(void);
 
 /*
 ** Utilities
