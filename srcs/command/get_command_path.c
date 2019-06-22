@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 08:15:49 by alan              #+#    #+#             */
-/*   Updated: 2019/06/13 21:08:55 by abarnett         ###   ########.fr       */
+/*   Updated: 2019/06/21 20:15:33 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ const char			*get_command_path(const char *command, int command_len)
 		return ((const char *)ft_strdup(command));
 	path = get_env_value("PATH");
 	if (!path)
-		return (0);
+		return (ft_strndup(command, command_len));
 	while (*path)
 	{
 		len = ft_strchr_end(path, ':') - path;
