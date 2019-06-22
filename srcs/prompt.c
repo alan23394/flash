@@ -6,12 +6,14 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 16:25:45 by alan              #+#    #+#             */
-/*   Updated: 2019/06/08 19:17:19 by abarnett         ###   ########.fr       */
+/*   Updated: 2019/06/21 19:00:46 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "environment.h"
 #include "prompt.h"
 #include "ft_printf.h"
+#include <time.h>
 
 /*
 ** Minishell prompt file
@@ -29,9 +31,16 @@
 
 static void	prompt_1(void)
 {
-	ft_printf("%s>>> %s",
-			MAGENTA,
-			NORMAL);
+	char	*time;
+
+	time = "Thu Jun 20 22:20:13 2019\n";
+	ft_printf("%s%s%.19s%s%s%s%s\n%s",
+			MAGENTA">",
+			BLUE, time,
+			MAGENTA">",
+			GREEN, get_cd_wd(),
+			MAGENTA">",
+			MAGENTA">>> "NORMAL);
 }
 
 static void	prompt_2(void)
