@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/02 23:33:46 by alan              #+#    #+#             */
-/*   Updated: 2019/06/14 20:34:13 by abarnett         ###   ########.fr       */
+/*   Updated: 2019/06/21 19:56:12 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include "ft_darr.h"
 #include "ft_list.h"
 #include "error.h"
+#include <unistd.h>
 
 void	shell_setup(const char *shell_launch_path)
 {
@@ -29,6 +30,7 @@ void	shell_setup(const char *shell_launch_path)
 	g_shell_name = get_path_filename(shell_launch_path);
 	g_environ = ft_dup_darr((const char **)environ);
 	inc_env("SHLVL");
+	set_cd_wd(getcwd(0, 0));
 	print_prompt(1);
 }
 
