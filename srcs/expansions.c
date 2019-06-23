@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 08:02:16 by alan              #+#    #+#             */
-/*   Updated: 2019/06/09 04:30:17 by abarnett         ###   ########.fr       */
+/*   Updated: 2019/06/22 20:35:44 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 ** argument into the expanded chunks (replacing ~ for the home path, $VARs
 ** etc), and then combines that list into one new string, which it returns. It
 ** sets the len pointer passed in to the length of the string it returns.
+**
+** It makes a linked list, and for each content pointer is a pointer to a
+** string to take a section of. It then can delete the nodes without deleting
+** any of the strings, because they are preallocated for somewhere else.
 */
 
 static const char	*expand_arg(const char **command, int *len)

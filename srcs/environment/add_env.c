@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 04:24:30 by alan              #+#    #+#             */
-/*   Updated: 2019/05/29 02:50:07 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/22 22:19:19 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ int		add_env(const char *env)
 {
 	int	env_namelen;
 
-	env_namelen = ft_strchr(env, '=') - env;
+	env_namelen = ft_strchr_i(env, '=');
 	return (add_envn(env, env_namelen));
 }

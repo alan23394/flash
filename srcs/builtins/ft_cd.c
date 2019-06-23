@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 12:34:54 by alan              #+#    #+#             */
-/*   Updated: 2019/06/21 19:48:07 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/22 22:08:46 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,12 @@ static enum e_err_code	ft_chdir(const char *newdir)
 	enum e_err_code	error_code;
 
 	if ((error_code = check_bad_dir(newdir)) != 0)
+	{
 		return (error_code);
+	}
 	error_code = chdir(newdir);
 	if (error_code != 0)
 	{
-		ft_strdel((char **)&newdir);
 		return (E_CHDIRFAIL);
 	}
 	newdir = getcwd(0, 0);
@@ -73,11 +74,15 @@ static int				cd_arg(const char *builtin_name, const char *arg)
 	{
 		arg = get_env_value("OLDPWD");
 		if (!arg)
+		{
 			return (E_NOOLDPWD);
+		}
 	}
 	error_code = ft_chdir(arg);
 	if (error_code != 0)
+	{
 		return (print_builtin_error(builtin_name, arg, error_code));
+	}
 	return (0);
 }
 

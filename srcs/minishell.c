@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/02 23:33:46 by alan              #+#    #+#             */
-/*   Updated: 2019/06/21 19:56:12 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/22 22:36:26 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 #include "expansions.h"
 #include "command.h"
 #include "prompt.h"
+#include "error.h"
 #include "ft_utils.h"
 #include "ft_string.h"
 #include "get_next_line.h"
 #include "ft_darr.h"
 #include "ft_list.h"
-#include "error.h"
 #include <unistd.h>
 
 void	shell_setup(const char *shell_launch_path)
@@ -66,14 +66,14 @@ int		shell_loop(void)
 			return (print_error("get_next_line", E_GNLFAIL));
 		if ((ret = process_line(&cur)) == -1)
 			break ;
+		last_ret = ret;
+		ret = 0;
 		if (*cur == '\0')
 		{
 			ft_strdel(&line);
 			cur = 0;
 			print_prompt(1);
 		}
-		last_ret = ret;
-		ret = 0;
 	}
 	ft_strdel(&line);
 	return (last_ret);

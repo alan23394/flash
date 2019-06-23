@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 23:55:17 by alan              #+#    #+#             */
-/*   Updated: 2019/05/16 14:11:42 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/22 20:55:01 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@
 
 const char	*get_envi_value(int env_index)
 {
-	const char	*value;
+	const char	*sign;
 
-	value = ft_strchr(g_environ[env_index], '=');
-	if (!value)
+	sign = ft_strchr(g_environ[env_index], '=');
+	if (!sign)
 		return (0);
-	return (value + 1);
+	return (sign + 1);
 }
 
 /*
