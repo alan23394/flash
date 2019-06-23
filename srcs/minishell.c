@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/02 23:33:46 by alan              #+#    #+#             */
-/*   Updated: 2019/06/22 22:36:26 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/22 23:48:15 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int		shell_loop(void)
 	int			last_ret;
 
 	cur = 0;
-	ret = 0;
+	last_ret = 0;
 	while ((cur && *cur) || (((ret = get_next_line(0, &line)) != 0) &&
 				(cur = line)))
 	{
