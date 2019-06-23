@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 18:11:06 by alan              #+#    #+#             */
-/*   Updated: 2019/06/21 19:47:50 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/23 00:35:16 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,8 @@ const char	*get_error_string(enum e_err_code error_code)
 		"No such command"
 	};
 
-	if (error_code > 0 && error_code < ERROR_MESSAGE_COUNT)
-		return (error_strings[error_code]);
-	return (0);
+	return ((error_code > 0 && error_code < ERROR_MESSAGE_COUNT)
+			? (error_strings[error_code]) : 0);
 }
 
 int			print_error(const char *command, enum e_err_code error_code)

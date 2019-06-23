@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 19:27:17 by alan              #+#    #+#             */
-/*   Updated: 2019/06/21 19:51:18 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/23 00:32:08 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@
 ** symlinks.
 */
 
-static const char	*wd = 0;
+static const char	*g_wd = 0;
 
 const char	*get_cd_wd(void)
 {
-	return (wd);
+	return (g_wd);
 }
 
 void		set_cd_wd(const char *path)
 {
-	if (wd)
-		ft_strdel((char **)&wd);
-	wd = path;
+	if (g_wd)
+		ft_strdel((char **)&g_wd);
+	g_wd = path;
 }

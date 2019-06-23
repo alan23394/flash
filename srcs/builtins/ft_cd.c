@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 12:34:54 by alan              #+#    #+#             */
-/*   Updated: 2019/06/22 22:08:46 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/23 00:33:01 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ static int				cd_arg(const char *builtin_name, const char *arg)
 	}
 	return (0);
 }
-
 
 /*
 ** If no args: cd $HOME

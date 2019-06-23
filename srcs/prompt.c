@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 16:25:45 by alan              #+#    #+#             */
-/*   Updated: 2019/06/21 20:27:09 by alan             ###   ########.fr       */
+/*   Updated: 2019/06/23 00:33:29 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,8 @@ static void	prompt_1(void)
 {
 	char		*time_string;
 	time_t		t;
-	// struct tm	*tm;
 
 	t = time(0);
-	// tm = localtime(&t);
 	time_string = ctime(&t);
 	ft_printf("%s%s%.19s%s%s%s%s\n%s",
 			MAGENTA">",
