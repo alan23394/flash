@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 23:52:42 by alan              #+#    #+#             */
-/*   Updated: 2019/06/08 19:16:44 by abarnett         ###   ########.fr       */
+/*   Updated: 2019/06/22 23:29:03 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int		call_command(const char *command, const char **args)
 	else
 	{
 		waitpid(pid, &stat, 0);
+		if (WIFEXITED(stat))
+			return (WEXITSTATUS(stat));
 		return (0);
 	}
 }
