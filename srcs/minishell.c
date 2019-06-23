@@ -44,8 +44,9 @@ int		process_line(const char **line_cursor)
 	if (!args)
 		return (0);
 	if (ft_strequ(args->content, "exit"))
-		return (-1);
-	ret = process_command(args);
+		ret = -1;
+	else
+		ret = process_command(args);
 	ft_lstdel(&args, ft_lstmemdel);
 	return (ret);
 }
