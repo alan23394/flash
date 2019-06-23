@@ -6,7 +6,7 @@
 #    By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/05 13:42:22 by alan              #+#    #+#              #
-#    Updated: 2019/06/09 03:57:10 by abarnett         ###   ########.fr        #
+#    Updated: 2019/06/23 00:47:22 by alan             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,3 @@ re: fclean all
 
 install: $(NAME)
 	ln -siv $(shell pwd)/$(NAME) ~/bin/flash
-
-libclean:
-	@- $(MAKE_LIBRARY) fclean
