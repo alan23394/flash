@@ -6,7 +6,7 @@
 #    By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/05 13:42:22 by alan              #+#    #+#              #
-#    Updated: 2019/06/23 00:47:22 by alan             ###   ########.fr        #
+#    Updated: 2019/08/09 18:54:53 by abarnett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ DEPFLAGS +=		-MMD -MT $@
 MAKE_LIBRARY :=	make -C $(LIB_DIR) -f $(LIB_MAKEFILE) --no-print-directory
 LIB :=			$(LIB_DIR)/$(LIB_NAME)
 
-.PHONY:			all clean fclean re install
+.PHONY:			all systemlibft clean fclean re install
 
 all: tags $(NAME)
 
@@ -38,6 +38,9 @@ $(LIB): $(LIB_SRCS)
 	@ $(MAKE_LIBRARY)
 
 $(NAME): $(LIB) $(C_OBJS)
+	$(CC) $(CFLAGS) $(C_OBJS) -o $(NAME) $(LDFLAGS)
+
+systemlibft: $(C_OBJS)
 	$(CC) $(CFLAGS) $(C_OBJS) -o $(NAME) $(LDFLAGS)
 
 %.o: %.c Makefile
